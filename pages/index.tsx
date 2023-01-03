@@ -9,6 +9,13 @@ const getData = () =>
     },
   }).then((res) => res.json());
 
+const getDat = () =>
+  fetch("http://localhost:3000/api/hello", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => res.json());
+
 const Home: NextPage<{ isSSRFetchSuccess: string }> = ({
   isSSRFetchSuccess,
 }) => {
@@ -16,10 +23,13 @@ const Home: NextPage<{ isSSRFetchSuccess: string }> = ({
     initialData: isSSRFetchSuccess,
   });
 
+  const { data: dd } = useQuery(["qq"], getDat);
+
   return (
     <>
       <h1>test</h1>
       <div>{data}</div>
+      <div>{JSON.stringify(dd)}</div>
     </>
   );
 };
